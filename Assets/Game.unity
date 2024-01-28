@@ -3534,6 +3534,12 @@ MonoBehaviour:
   s: {fileID: 880436121}
   d: {fileID: 378486965}
   direccion: {fileID: 0}
+  jugador: {fileID: 0}
+  jugadores:
+  - {fileID: 2061309107}
+  - {fileID: 1080273154}
+  minVertcial: -50
+  maxVertical: 50
 --- !u!135 &564262359
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6427,7 +6433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5169729927948826641, guid: 050d1465fe1ba104680bdaf476eed4de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.1400003
+      value: -0.679
       objectReference: {fileID: 0}
     - target: {fileID: 5169729927948826641, guid: 050d1465fe1ba104680bdaf476eed4de, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12424,7 +12430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2051006513099588396, guid: c10dca5df7af2ca4998041775c02174b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.1400003
+      value: -0.6789999
       objectReference: {fileID: 0}
     - target: {fileID: 2051006513099588396, guid: c10dca5df7af2ca4998041775c02174b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13147,6 +13153,11 @@ MonoBehaviour:
   animArray:
   - {fileID: 1555453373}
   - {fileID: 1265735274}
+  jugador: {fileID: 0}
+  jugadores:
+  - {fileID: 1086963855}
+  - {fileID: 1409481538}
+  cubo: {fileID: 0}
 --- !u!135 &2140209982
 SphereCollider:
   m_ObjectHideFlags: 0

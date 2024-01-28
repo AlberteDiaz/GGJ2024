@@ -19,11 +19,15 @@ public class Player2 : MonoBehaviour
     public GameObject direccion;
     public Animator anim;
     public Animator[] animArray;
-    
+    public GameObject jugador;
+    public GameObject[] jugadores;
+    public GameObject cubo;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = animArray[id];
+        jugador = jugadores[id];
     }
 
     // Update is called once per frame
@@ -67,8 +71,14 @@ public class Player2 : MonoBehaviour
         }
 
 
-        transform.position = pos;
 
+        Vector3 movDir = new Vector3(x, 0, z);
+        movDir.Normalize();
+        if (movDir != Vector3.zero)
+        {
+            jugador.transform.forward = movDir;
+        }
+        transform.position = pos;
 
         if (Input.GetKeyDown(KeyCode.Z))
         {

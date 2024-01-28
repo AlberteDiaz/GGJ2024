@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Player1 : MonoBehaviour
 {
@@ -19,24 +20,38 @@ public class Player1 : MonoBehaviour
     public GameObject s;
     public GameObject d;
     public GameObject direccion;
-    
+    public GameObject jugador;
+    public GameObject[] jugadores;
+
+
+    public float minVertcial = -50f;
+    public float maxVertical = 50f;
+    private float vertical = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = animArray[id];
-    }
+        jugador = jugadores[id];
+}
 
     // Update is called once per frame
     void Update()
     {
         Vector3 pos = transform.position;
-        float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
+        float x = Input.GetAxis("Horizontal");
+        float horizontal = transform.localEulerAngles.y + Input.GetAxis("Horizontal") * 10f;
+        vertical -= 10f * Input.GetAxis("Vertical");
+        vertical = Mathf.Clamp(vertical, minVertcial, maxVertical);
+       
         if (x > 0)
         {
             direccion = d;
             direccionBala = transform.right;
             pos.x += speed * Time.deltaTime;
+
+            
             anim.SetTrigger("Move");
         }
         else if(x<0)
@@ -44,6 +59,7 @@ public class Player1 : MonoBehaviour
             direccion = a;
             direccionBala = -transform.right;
             pos.x -= speed * Time.deltaTime;
+            
             anim.SetTrigger("Move");
         }
         if (z > 0)
@@ -51,6 +67,7 @@ public class Player1 : MonoBehaviour
             direccion = w;
             direccionBala = transform.forward;
             pos.z += speed * Time.deltaTime;
+            
             anim.SetTrigger("Move");
         }
         else if (z < 0)
@@ -58,19 +75,22 @@ public class Player1 : MonoBehaviour
             direccion = s;
             direccionBala = -transform.forward;
             pos.z -= speed * Time.deltaTime;
+            
             anim.SetTrigger("Move");
         }
         else if(x==0 && z == 0)
         {
             anim.SetTrigger("Idle");
         }
-
-
-        
-
-        
-        
         transform.position = pos;
+        Vector3 movDir = new Vector3(x, 0, z);
+        movDir.Normalize();
+        if (movDir != Vector3.zero)
+        {
+            jugador.transform.forward = movDir;
+        }
+        
+        
 
         if (Input.GetKeyDown(KeyCode.H))
         {
