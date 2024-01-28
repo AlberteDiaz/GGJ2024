@@ -26,6 +26,17 @@ public class ChangeScene : MonoBehaviour
     {
         SceneManager.LoadScene("OptionsScene");
     }
+
+    public void MenuButton()
+    {
+        SceneManager.LoadScene("Start Menu");
+    }
+
+    public void CreditosButton()
+    {
+        SceneManager.LoadScene("Creditos");
+    }
+
     public void ExitButton()
     {
         Application.Quit(0);
