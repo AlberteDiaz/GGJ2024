@@ -20,9 +20,16 @@ public class jugador : MonoBehaviour
 
     public GameObject areaCosquillas;
     public GameObject caramelo;
+
+    public GameObject ganador;
+    public GameObject perdedor;
+
     // Start is called before the first frame update
     void Start()
     {
+        ganador.SetActive(false);
+        perdedor.SetActive(false);
+
         if (esteGM == 1)
         {
             enemigo = "enemigo";
@@ -98,6 +105,8 @@ public class jugador : MonoBehaviour
         if (vida <= 0)
         {
             //muerte.SetActive(true);
+            perdedor.SetActive(true);
+            ganador.SetActive(true);
             Destroy(this.gameObject);
             
         }

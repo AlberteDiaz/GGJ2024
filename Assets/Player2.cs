@@ -115,6 +115,7 @@ public class Player2 : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.V))
         {
+            this.gameObject.GetComponent<jugador>().cosquillas(); 
             anim.SetTrigger("A4");
             GameManager.Instance.useAbility(3, "V", 3);
         }
