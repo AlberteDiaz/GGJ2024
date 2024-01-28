@@ -19,6 +19,7 @@ public class ChangeScene : MonoBehaviour
 
     public void PlayButton()
     {
+        Debug.Log("UWU");
         SceneManager.LoadScene("CharacterSelection");
     }
 
