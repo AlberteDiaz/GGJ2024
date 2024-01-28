@@ -11,60 +11,70 @@ public class Player2 : MonoBehaviour
     public Vector3 direccionBala;
 
     public bool puedoDisparo = true;
-    
+    public int id;
     public GameObject w;
     public GameObject a;
     public GameObject s;
     public GameObject d;
     public GameObject direccion;
     public Animator anim;
+    public Animator[] animArray;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim = animArray[id];
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 pos = transform.position;
-
-        if (Input.GetKey("w"))
-        {
-            direccion = w;
-            direccionBala = transform.forward;
-            pos.z += speed * Time.deltaTime;
-            
-        }
-        if (Input.GetKey("s"))
-        {
-            direccion = s;
-            direccionBala = -transform.forward;
-            pos.z -= speed * Time.deltaTime;
-        }
-        if (Input.GetKey("d"))
+        
+        float x = Input.GetAxis("EjeX");
+        float z = Input.GetAxis("EjeY");
+        if (x > 0)
         {
             direccion = d;
             direccionBala = transform.right;
             pos.x += speed * Time.deltaTime;
+            anim.SetTrigger("Move");
         }
-        if (Input.GetKey("a"))
+        else if (x < 0)
         {
-
             direccion = a;
             direccionBala = -transform.right;
             pos.x -= speed * Time.deltaTime;
+            anim.SetTrigger("Move");
+        }
+        if (z > 0)
+        {
+            direccion = w;
+            direccionBala = transform.forward;
+            pos.z += speed * Time.deltaTime;
+            anim.SetTrigger("Move");
+        }
+        else if (z < 0)
+        {
+            direccion = s;
+            direccionBala = -transform.forward;
+            pos.z -= speed * Time.deltaTime;
+            anim.SetTrigger("Move");
+        }
+        else if (x == 0 && z == 0)
+        {
+            anim.SetTrigger("Idle");
         }
 
 
         transform.position = pos;
 
 
-        if (Input.GetKey(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             if (puedoDisparo)
             {
+                anim.SetTrigger("A1");
                 GameObject balaTemporal = Instantiate(balaPrefab, direccion.transform.position, Quaternion.identity) as GameObject;
 
                 Rigidbody rb = balaTemporal.GetComponent<Rigidbody>();
@@ -81,18 +91,21 @@ public class Player2 : MonoBehaviour
 
             
         }
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X))
         {
+            anim.SetTrigger("A2");
             this.gameObject.GetComponent<jugador>().caramelos();
             GameManager.Instance.useAbility(1, "X", 3);
         }
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C))
         {
+            anim.SetTrigger("A3");
             this.gameObject.GetComponent<jugador>().empujon();
             GameManager.Instance.useAbility(2, "C", 3);
         }
-        if (Input.GetKey(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V))
         {
+            anim.SetTrigger("A4");
             GameManager.Instance.useAbility(3, "V", 3);
         }
 
