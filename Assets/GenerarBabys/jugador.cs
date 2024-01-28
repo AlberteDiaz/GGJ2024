@@ -1,3 +1,4 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -11,6 +12,8 @@ public class jugador : MonoBehaviour
     public GameObject[] enemigos;
     public int esteGM;
     string enemigo;
+    public GameObject[] corazon;
+    public GameObject[] corazonApagado;
 
     public bool puedoEmpujar = true;
     public bool puedoCaramelo = true;
@@ -45,6 +48,53 @@ public class jugador : MonoBehaviour
     public void perderVida(int cantidad)
     {
         vida = vida - cantidad;
+        
+        if(vida == 100)
+        {
+            corazon[0].SetActive(true);
+            corazon[1].SetActive(true);
+            corazon[2].SetActive(true);
+            corazon[3].SetActive(true);
+        }
+        else if(vida <= 80 && vida > 60)
+        {
+            corazon[0].SetActive(true);
+            corazon[1].SetActive(true);
+            corazon[2].SetActive(true);
+            corazon[3].SetActive(false);
+            corazonApagado[3].SetActive(true);
+        }
+        else if(vida <= 60 && vida > 40)
+        {
+            corazon[0].SetActive(true);
+            corazon[1].SetActive(true);
+            corazon[2].SetActive(false);
+            corazon[3].SetActive(false);
+            corazonApagado[3].SetActive(true);
+            corazonApagado[2].SetActive(true);
+        }
+        else if(vida <= 40 && vida > 20)
+        {
+            corazon[0].SetActive(true);
+            corazon[1].SetActive(false);
+            corazon[2].SetActive(false);
+            corazon[3].SetActive(false);
+            corazonApagado[3].SetActive(true);
+            corazonApagado[2].SetActive(true);
+            corazonApagado[1].SetActive(true);
+        }
+        else if(vida <= 20)
+        {
+            corazon[0].SetActive(false);
+            corazon[1].SetActive(false);
+            corazon[2].SetActive(false);
+            corazon[3].SetActive(false);
+            corazonApagado[3].SetActive(true);
+            corazonApagado[2].SetActive(true);
+            corazonApagado[1].SetActive(true);
+            corazonApagado[0].SetActive(true);
+        }
+
         if (vida <= 0)
         {
             //muerte.SetActive(true);
