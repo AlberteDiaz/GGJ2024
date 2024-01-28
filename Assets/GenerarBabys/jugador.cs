@@ -107,6 +107,7 @@ public class jugador : MonoBehaviour
             //muerte.SetActive(true);
             perdedor.SetActive(true);
             ganador.SetActive(true);
+            Time.timeScale = 0f;
             Destroy(this.gameObject);
             
         }

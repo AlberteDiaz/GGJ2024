@@ -30,6 +30,7 @@ public class ChangeScene : MonoBehaviour
 
     public void MenuButton()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Start Menu");
     }
 
@@ -41,5 +42,10 @@ public class ChangeScene : MonoBehaviour
     public void ExitButton()
     {
         Application.Quit(0);
+    }
+
+    public void InstruccionesButton()
+    {
+        SceneManager.LoadScene("Instrucciones");
     }
 }
